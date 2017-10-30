@@ -1,4 +1,27 @@
-<button class="btn btn-primary" [disabled]="!allowNewServer">Add Server</button>
-<p [innerText]="allowNewServer"></p>
-<app-server></app-server>
-<app-server></app-server>
+<label>Server Name</label>
+<!-- <input type="text" class="form-control"
+ (input)="onUpdateServerName($event)"> -->
+ <input type="text" class="form-control"
+  [(ngModel)]="serverName">
+<!-- <p>{{ serverName }}</p> -->
+
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add Server</button>
+<!-- <p [innerText]="allowNewServer"></p>
+<p>{{ serverCreationStatus }}</p> -->
+<!-- <p *ngIf="serverCreated; else noServer">Server was created. Server name: {{ serverName }}</p>
+<ng-template #noServer>
+  <p>No server was created!<p>
+</ng-template> -->
+<p *ngIf="serverCreated">Server was created. Server name: {{ serverName }}</p>
+<app-server *ngFor="let server of servers"></app-server>
+
+<!-- <hr>
+<input type="text" class="form-control" [(ngModel)]="userName" (input)="onInputUsername($event)">
+<p>{{ userName }}</p>
+<button class="btn btn-primary" [disabled]="emptyName" (click)="clearUsername()">Clear Name</button> -->
+
+<button type="button" class="btn btn-primary" (click)="toggleDetails()">Display Details</button>
+<p [ngStyle]="{ display: getDetailsDisplay() ? 'block' : 'none' }">My secret password</p>
+<p *ngFor="let click of clicks; let i = index"
+[ngStyle]="{ backgroundColor: i > 5 ? 'blue' : 'none' }"
+[ngClass]="{ 'whiteColor': i > 5 }">{{ click }}</p>
